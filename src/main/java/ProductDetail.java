@@ -34,6 +34,9 @@ public class ProductDetail {
 
         return price;
     }
+    public HashMap<String, Integer> getProductCount() {
+        return productCount;
+    }
     public HashMap<String, ProductDetail> getProductDetailsObjectList() {
         return productDetailsObjectList;
     }
@@ -126,7 +129,7 @@ public class ProductDetail {
 
 
     //a method for computing product count for each products
-    public HashMap<String, Integer> productCount(HashMap<String,ProductDetail> productDetailsObjectList){
+    public HashMap<String, Integer> productCount(){
 
         //path to csv
         String filepath = "./src/main/resources/Product.csv";

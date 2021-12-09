@@ -41,7 +41,7 @@ public class Main {
         HashMap<String, Double> clientCapitalList = client.clientCapital(product.getProductDetailsObjectList());
 
         //get product count
-        HashMap<String, Integer> productCountList = product.productCount(product.getProductDetailsObjectList());
+        HashMap<String, Integer> productCountList = product.productCount();
 
         //get portfolio capital
         ArrayList<PortFolio> portFolioCapitalList = portFolio.portfolioDetails(product.getPortFolioNameList(), product.getProductDetailsObjectList(), productCountList);
