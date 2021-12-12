@@ -3,7 +3,66 @@ import java.util.HashMap;
 
 public class Product extends Item{
 
+    //constructor variables declarations
+    private String portfolio;
+    private String name;
+    private Double price;
 
+    private HashMap<String, Double> conversionRate;
+    ArrayList<Product> productList = new ArrayList<>();
+    //constructor method
+    public Product(String name, String portfolio, Double price){
+
+        this.portfolio = portfolio;
+        this.price = price;
+        this.name = name;
+    }
+
+    public Product(){}
+
+    /* Setter and getter methods */
+
+    public String getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(String portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public ArrayList<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(ArrayList<Product> productList) {
+        this.productList = productList;
+    }
+
+    public HashMap<String, Double> getConversionRate() {
+        return conversionRate;
+    }
+
+    public void setConversionRate(ArrayList<String[]> forexRawData) {
+        this.conversionRate = computeProductPriceConversionRate(forexRawData);
+    }
+
+    /* getter and setter method from abstract class*/
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+    /* end of getter and setter method from abstract class */
 
     //process conversion rate from csv data
     public HashMap<String, Double> computeProductPriceConversionRate(ArrayList<String[]> rawForexData) {
