@@ -1,7 +1,7 @@
 PricingDate,,,,
 ,,,,
 ,,,,
-Portfolio,Product,Underlying,Currency,Price
+PortFolio,Product,Underlying,Currency,Price
 PTF1,P1,U11,EUR,10
 PTF1,P1,U12,USD,20
 PTF1,P1,U13,USD,30
