@@ -7,6 +7,26 @@ import java.util.ArrayList;
 abstract class Item {
 
 
+
+
+    //a method for converting string to int
+    public static Integer parseIntOrNull(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    //a method for converting string to double
+    public static Double parseFloatOrNull(String value) {
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return -1.00;
+        }
+    }
+
     //a method for loading csv files
     public static ArrayList<String[]> loadCsv(String fileName){
 
