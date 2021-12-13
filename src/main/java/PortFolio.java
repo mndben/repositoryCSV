@@ -49,9 +49,46 @@ public class PortFolio extends Item{
         return portFolioList;
     }
 
-    public void setPortFolioList(ArrayList<PortFolio> portFolio) {
-        this.portFolioList = portFolio;
-    }
-
     /* End of Getter and Setter method */
+    public HashMap<String, Double> processPortfolioDetails(ArrayList<String> portfolioList, ArrayList<Product> productList, HashMap<String, Integer> productCount){
+
+        /* Array List to store portfolio detail
+         * */
+        HashMap<String, Double> porFolioDetails = new HashMap<>();
+
+        /*loop through the available portfolios and
+        construct an array list of portfolios and it's products
+        */
+        for (int i = 0; i < portfolioList.size(); i++) {
+
+            String tempPortfolioName = portfolioList.get(i).toLowerCase();
+            ArrayList<String> tempProductList = new ArrayList<>();
+            Double tempPortFolioPrice = 0.00;
+
+            /*loop through each product in product details array list and
+            check if we have a product for the current portfolio
+            * */
+
+            for (int j = 0; j < productList.size(); j++) {
+
+                Product tempProductDetail = productList.get(j);
+                Double tempProductPrice = tempProductDetail.getPrice();
+
+                //check to see if product belongs to portfolio
+                if (tempProductDetail.getPortfolio().toLowerCase().equals(tempPortfolioName)) {
+
+                    tempProductList.add(tempProductDetail.getName());
+                    tempPortFolioPrice += tempProductPrice * productCount.get(tempProductDetail.getName());
+                }
+            }/* end of product details loop*/
+
+            /*store portfolio info for the current product
+             * */
+            //add details to arraylist
+            porFolioDetails.put(tempPortfolioName,tempPortFolioPrice);
+        }
+
+        return porFolioDetails;
+
+    }
 }

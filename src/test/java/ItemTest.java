@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ class ItemTest {
     HashMap<String,Double> exchangeRate;
     HashMap<String,Double> productPriceList;
     ArrayList<String> testPortfolioList;
+    IOException ioe;
 
 
     @BeforeEach
@@ -143,6 +145,26 @@ class ItemTest {
 
 
 
+
+    }
+
+    @Test
+    void writeResultToCsv() {
+        String testPath = "./src/main/resources/result/test.csv";
+
+        /* Test : expected error through if invalid path*/
+        assertDoesNotThrow(() -> {Item.writeToCsv(new String[]{"item1", "item2"},testPath);});
+    }
+
+    @Test
+    void writeToCsv() {
+
+        String testPath = "./src/main/resources/result/test.csv";
+
+        /* Test : expected error IOexceptio */
+        assertDoesNotThrow(() -> {
+            Item.writeToCsv(new String[]{"item1","item2"}, testPath);
+        }, "NullPointerException was expected");
 
     }
 }

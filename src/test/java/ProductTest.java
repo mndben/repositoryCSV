@@ -19,7 +19,7 @@ class ProductTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product();
+        product = new Product("productZ","portfolioZ",null);
         rawForexData = Item.loadCsv(filePath);
         productCountList = new HashMap<>();
 
@@ -60,4 +60,27 @@ class ProductTest {
 
     }
 
+    @Test
+    void getName() {
+        /* Test : testing getter method */
+        assertEquals("productZ", product.getName());
+    }
+
+    @Test
+    void getPrice() {
+
+        /* Test : testing setter and  getter method for price*/
+        product.setPrice(2000.00);
+
+        /* Test: get price */
+        assertEquals(2000.00,product.getPrice());
+    }
+
+    @Test
+    void  getPortfolio(){
+
+        /* Test : testing getter method */
+        assertEquals("portfolioZ", product.getPortfolio());
+
+    }
 }

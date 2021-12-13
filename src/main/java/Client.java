@@ -6,10 +6,6 @@ public class Client extends Item{
     private String name;
     private Double price;
     private HashMap<String,Integer> inventory;
-
-    //product count for each product
-    private HashMap<String, Integer> productCount = new HashMap<>();
-
     public Client(String name, HashMap<String, Integer> inventory) {
         this.name = name;
         this.inventory = inventory;
@@ -27,7 +23,6 @@ public class Client extends Item{
     public void setName(String name) {
         this.name = name;
     }
-
     public Double getPrice() {
         return price;
     }
@@ -83,7 +78,6 @@ public class Client extends Item{
                     }else{
                         tempClientMap.put(clientName, (productPrice*productCount));
                     }
-                    System.out.println(clientName + ":" + productPrice*productCount);
                 }
             }
         }

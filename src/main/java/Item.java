@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,6 +11,9 @@ abstract class Item {
 
     String name;
     Double price;
+
+    //double formatter
+    public static final DecimalFormat df = new DecimalFormat("0.00");
 
 
     /* abstract getter and setter */
@@ -66,9 +71,6 @@ abstract class Item {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        //return result
-
-
         return data;
 
     }
@@ -154,6 +156,44 @@ abstract class Item {
         }
         product.setProductList(productList);
         portFolio.setportFolioNameList(portFolioNameList);
+    }
+
+    public void writeResultToCsv(HashMap<String, Double> itemList, String filePath){
+
+        for (String key : itemList.keySet()) {
+
+            String itemName = key;
+            Double itemVal = itemList.get(key);
+
+            String[] itemCompressed = {itemName, df.format(itemVal)};
+            writeToCsv(itemCompressed, filePath);
+        }
+    }
+
+    //a method to write a string to csv
+    public static void writeToCsv(String[] details, String filePath){
+
+        //initialize file writer class
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(filePath,true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //write details
+        try {
+            fileWriter.append(String.join(",", details));
+            fileWriter.append("\n");
+
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
 

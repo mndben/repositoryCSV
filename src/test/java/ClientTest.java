@@ -25,13 +25,12 @@ class ClientTest {
     @BeforeEach
     void setUp() {
         product = new Product();
-        client = new Client();
+        client = new Client("client1",null);
         portFolio = new PortFolio();
 
         rawForexData = Item.loadCsv(filePathForex);
         rawProductData = Item.loadCsv(filePathProduct);
 
-        product.setConversionRate(rawForexData);
         product.setConversionRate(rawForexData);
 
         product.processRawItem(Item.loadCsv(filePathPrice),product,portFolio);
@@ -43,6 +42,9 @@ class ClientTest {
         clientCapitalList.put("c3",7738.00);
         clientCapitalList.put("c4",350.00);
         clientCapitalList.put("c5",55534.00);
+        clientCapitalList.put("c6",2808.00);
+        clientCapitalList.put("c7",30836.00);
+        clientCapitalList.put("c8",57600.00);
 
     }
 
@@ -61,11 +63,22 @@ class ClientTest {
             assertEquals(clientCapitalList.get(key), tempClientMap.get(key));
 
         }
+    }
 
+    @Test
+    void getName() {
+        /* Test : testing getter method */
+        assertEquals("client1", client.getName());
+    }
 
+    @Test
+    void getPrice() {
 
+        /* Test : testing setter and  getter method for price*/
 
+        client.setPrice(100.00);
 
-
+        /* Test: get price */
+        assertEquals(100.00,client.getPrice());
     }
 }
