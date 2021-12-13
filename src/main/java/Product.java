@@ -94,4 +94,42 @@ public class Product extends Item{
         return conversionList;
     }
 
+    public HashMap<String, Integer> productCount(ArrayList<String[]> rawProductInfo){
+
+        //temp hashmap for storing product count
+        HashMap<String, Integer> productCounts = new HashMap<>();
+
+        //loop through the arraylist of product csv rawdata
+        for (int i = 0; i < rawProductInfo.size(); i++) {
+
+            //check to see if the current column is valid
+            if(rawProductInfo.get(i).length == 3){
+                //initialize temp product info array
+                String[] tempProductInfo = rawProductInfo.get(i);
+
+                //check if the current column is not a header
+                if(!tempProductInfo[0].toLowerCase().equals("Product".toLowerCase())) {
+
+                    //initialize client detail variables
+                    String productName = tempProductInfo[0].toLowerCase();
+                    Integer productCount = parseIntOrNull(tempProductInfo[2]);
+
+                    //check if the product count is valid value
+                    if (productCount == -1) {
+                        //tell user invalid product count
+                        System.out.println("Invalid Product Count For :" + productName);
+                        continue;
+                    }
+                    //update product count
+                    if (productCounts.containsKey(productName)) {
+                        productCounts.put(productName, productCounts.get(productName) + productCount);
+                    } else {
+                        productCounts.put(productName, productCount);
+                    }
+                }
+            }
+        }
+        return productCounts;
+    }
+
 }
