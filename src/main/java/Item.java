@@ -160,6 +160,15 @@ abstract class Item {
 
     public void writeResultToCsv(HashMap<String, Double> itemList, String filePath){
 
+        //adding header to csv
+        if(filePath.contains("client")){
+
+            writeToCsv(new String[]{"client","price"}, filePath);
+
+        }else{
+            writeToCsv(new String[]{"portfolio","price"}, filePath);
+        }
+
         for (String key : itemList.keySet()) {
 
             String itemName = key;
